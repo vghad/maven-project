@@ -223,7 +223,7 @@
     <connection>scm:git:git@github.com:vghad/maven-project.git</connection>
     <developerConnection>scm:git:git@github.com:vghad/maven-project.git</developerConnection>
     <tag>HEAD</tag>
-    <url>http://github.com/prakashk0301/maven-project</url>
+    <url>http://github.com/vghad/maven-project</url>
   </scm>
 
   <prerequisites>
