@@ -1,8 +1,5 @@
-pipeline{
-  node{
-    stages{
-        stage("check scm")
-        checkout scm
-        }
-  }
-}  
+node{
+stage("check scm")
+checkout scm
+sh "Chckout scm"
+} 
