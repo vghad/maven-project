@@ -20,9 +20,9 @@ pipeline{
 				success{
 					echo 'Application Docker image built Successfully!'
 
-					#echo 'Deleting Old Docker container...'
-					#bat "docker rm -f \$(docker ps -aq -f name=tomcatwebapp)"
-					#echo 'Old Docker container Deleted successfully'
+					//echo 'Deleting Old Docker container...'
+					//bat "docker rm -f \$(docker ps -aq -f name=tomcatwebapp)"
+					//echo 'Old Docker container Deleted successfully'
 
 					echo 'Starting Docker Container'
 					bat "docker run --name tomcatwebapp -d -p ${params.tomcatwebapp_port}:8080 tomcatwebapp:${env.BUILD_ID}"
