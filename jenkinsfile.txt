@@ -16,7 +16,8 @@ pipeline {
 
         stage ('Build') {
             steps {
-                echo 'Build job'
+            mvn -Dmaven.test.failure.ignore=true clean package
+            echo 'Build job'
             }
         }
     }
