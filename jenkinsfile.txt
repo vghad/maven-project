@@ -1,0 +1,8 @@
+pipeline{
+  node{
+    stages{
+        stage("check scm")
+        checkout scm
+        }
+  }
+}  
