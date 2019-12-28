@@ -16,8 +16,8 @@ pipeline {
 
         stage ('Build') {
             steps {
-            git url: 'https://github.com/cyrille-leclerc/multi-module-maven-project'
-            sh 'mvn clean package'
+            git url: 'https://github.com/vghad/maven-project.git'
+            sh "${M2_HOME}/bin/mvn -Dmaven.test.failure.ignore clean package"
             echo 'Build job'
             }
         }
