@@ -1,5 +1,23 @@
-node{
-stage("check scm")
-checkout scm
-sh "Chckout scm"
-} 
+pipeline {
+    agent any
+    tools { 
+        maven 'Maven 3.6.3' 
+        jdk 'jdk14' 
+    }
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                ''' 
+            }
+        }
+
+        stage ('Build') {
+            steps {
+                echo 'Build job'
+            }
+        }
+    }
+}
