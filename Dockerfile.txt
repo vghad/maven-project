@@ -1,0 +1,19 @@
+FROM ubuntu
+
+MAINTAINER Vikas.ghadage@everseen.com
+
+RUN mkdir /opt/tomcat/
+RUN apt-get update -y
+RUN apt-get install curl -y
+WORKDIR /opt/tomcat
+RUN curl -O http://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.50/bin/apache-tomcat-8.5.50.tar.gz
+RUN tar xvfz apache*.tar.gz
+RUN mv apache-tomcat-8.5.50/* /opt/tomcat/.
+RUN apt-get -y install default-jre-headless
+RUN apt-get clean
+RUN java -version
+WORKDIR /opt/tomcat/webapps
+COPY /webapp/target/webapp.war /opt/tomcat/webapps/
+EXPOSE 8080
+
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]
