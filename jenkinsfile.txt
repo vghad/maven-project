@@ -8,7 +8,8 @@ pipeline{
 	parameters{
 		 string(name:'tomcatwebapp_port', defaultValue:'7070', description:'Tomcat WebApp Port')
 	}
-
+      stages{
+	  
 		stage('Build'){
 				steps{
 					sh 'mvn clean package'
@@ -41,5 +42,6 @@ pipeline{
 				failure{
 					echo 'Deployment Failed!'
 				}
+		}
 	}
 }
