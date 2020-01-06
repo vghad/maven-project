@@ -15,7 +15,6 @@ pipeline{
 					sh 'mvn clean package'
 					sh "docker build -t tomcatwebapp:${env.BUILD_ID} -f ./Dockerfile.txt ."
 						 }
-				}
 			post{
 				success{
 					echo 'Application Docker image built Successfully!'					
@@ -31,4 +30,5 @@ pipeline{
 				}
 		   }
 	   }
-   }
+    }
+ }
