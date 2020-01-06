@@ -14,21 +14,11 @@ pipeline{
 				steps{
 					sh 'mvn clean package'
 					sh "docker build -t tomcatwebapp:${env.BUILD_ID} -f ./Dockerfile.txt ."
-					script{
-					    def foo =  sh "docker ps -aq -f name=tomcatwebapp"
-					    echo "foo is  = ${foo}"
-						 if ( ${foo} != NULL)
-						 {
-							echo 'Deleting Old Docker container...'
-							sh "docker rm -f \$(docker ps -aq -f name=tomcatwebapp)"
-							echo 'Old Docker container Deleted successfully'
-						 }
-						 
-						 else {
-							echo 'No old docker container found'
+					echo 'Deleting Old Docker container...'
+					sh "docker rm -f $(docker ps -aq -f name=tomcatwebapp)"
+					echo 'Old Docker container Deleted successfully'
 						 }
 				}
-	         }
 			post{
 				success{
 					echo 'Application Docker image built Successfully!'					
@@ -45,4 +35,3 @@ pipeline{
 		   }
 	   }
    }
-}
