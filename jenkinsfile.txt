@@ -21,8 +21,8 @@ pipeline{
 		stage('Docker Push'){
 			    steps{
 					echo "Login on Dockerhub account"
-					withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-					sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+					withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
+					sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
 					 echo "Docker image push on a docker hub...."
                     sh "docker push frenley/development_env:tomcatwebapp-${env.BUILD_ID}" 
 					echo "Docker image successfully push on docker hub.....!!!"			
