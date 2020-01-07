@@ -35,7 +35,7 @@ pipeline{
 					echo "Check Ansible syntax"
 					sh "ansible-playbook deploy-test.yml --syntax-check"
 					echo "Pull docker image form dockerhub"
-					sh "sudo ansible-playbook deploy-test.yml"
+					sh "ansible-playbook deploy-test.yml"
 				
 					}
 				}
