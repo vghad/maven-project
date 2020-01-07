@@ -29,5 +29,15 @@ pipeline{
 					}		
 				}
 			}
-		}
+			
+		stage(''Docker Pull){
+				steps{
+					echo "Check Ansible syntax"
+					sh "ansible-playbook deploy-test.yml --check-syntax"
+					echo "Pull docker image form dockerhub"
+					sh "ansible-playbook deploy-test.yml"
+				
+					}
+				}
+	}
 }		
