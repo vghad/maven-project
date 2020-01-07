@@ -30,7 +30,7 @@ pipeline{
 				}
 			}
 			
-		stage(''Docker Pull){
+		stage('Docker Pull'){
 				steps{
 					echo "Check Ansible syntax"
 					sh "ansible-playbook deploy-test.yml --check-syntax"
