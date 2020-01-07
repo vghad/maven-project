@@ -13,16 +13,15 @@ pipeline{
 		stage('Build'){
 				steps{
 					sh 'mvn clean package'
-					sh "docker build -t frenley/development_env:${env.BUILD_ID} -f ./Dockerfile.txt ."
+					sh "docker build -t frenley/development_env:tomcatwebapp-${env.BUILD_ID} -f ./Dockerfile.txt ."
 						 }
 			post{
 				success{
-					echo 'Application Docker image built Successfully!'					
-					echo 'Starting Docker Container'
-					sh "docker run --name tomcatwebapp -d -p ${params.tomcatwebapp_port}:8080  frenley/development_env:${env.BUILD_ID}"
-					echo "Docker Container started successfully at port : ${params.tomcatwebapp_port}"
+					echo 'Application Docker image built Successfully!'				
+					echo "Login on Dockerhub account"
+					sh "docker login -u frenley -p naocha@87"
                     echo "Docker image push on a docker hub...."
-                    sh "docker push frenley/development_env:${env.BUILD_ID}" 
+                    sh "docker push frenley/development_env:tomcatwebapp-${env.BUILD_ID}" 
 					echo "Docker image successfully push on docker hub.....!!!"
 				}
 				failure{
