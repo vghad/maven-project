@@ -41,8 +41,8 @@
         name: "{{ default_container_image }}"
         source: pull
      
-   - name: build the Docker image
-     command: "docker build -t built-by-ansible -f ./Dockerfile.txt ."
+    - name: build the Docker image
+      command: "docker build -t built-by-ansible -f ./Dockerfile.txt ."
 
         
     - name: run the site in a docker container
