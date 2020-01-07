@@ -5,29 +5,29 @@ pipeline{
 		maven 'localmaven'
 	}
 
-	parameters{
-		 string(name:'tomcatwebapp_port', defaultValue:'7070', description:'Tomcat WebApp Port')
-	}
       stages{
 	  
 		stage('Build'){
 				steps{
-					sh 'mvn clean package'
-					sh "docker build -t frenley/development_env:tomcatwebapp-${env.BUILD_ID} -f ./Dockerfile.txt ."
+					sh 'mvn clean package'				
 						 }
-			post{
-				success{
-					echo 'Application Docker image built Successfully!'				
+			}
+		stage('Docker build'){
+				steps{
+					sh "docker build -t frenley/development_env:tomcatwebapp-${env.BUILD_ID} -f ./Dockerfile.txt ."
+					echo 'Application Docker image built Successfully!'					
+				}		
+			}		
+		stage('Docker Push'){
+			    steps{
 					echo "Login on Dockerhub account"
-					sh "docker login -u frenley -p naocha@87"
-                    echo "Docker image push on a docker hub...."
+					withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+					sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+					 echo "Docker image push on a docker hub...."
                     sh "docker push frenley/development_env:tomcatwebapp-${env.BUILD_ID}" 
-					echo "Docker image successfully push on docker hub.....!!!"
+					echo "Docker image successfully push on docker hub.....!!!"			
+					}		
 				}
-				failure{
-					echo 'Deployment Failed!'
-				}
-		   }
-	   }
-    }
- }
+			}
+		}
+}		
