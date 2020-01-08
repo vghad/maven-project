@@ -10,8 +10,8 @@ pipeline{
 		stage('Docker Pull'){
 				steps{
 				
-					withCredentials([usernamePassword(credentialsId: 'ansible', passwordVariable: 'ansiblePassword', usernameVariable: 'ansibleUser')]) {
-					sh "ansible-playbook deploy-test.yml --extra-vars ansible_user= ${env.ansibleUser} ansible_password= ${env.ansiblePassword}"
+					withCredentials([usernamePassword(credentialsId: 'ansibleDemo', passwordVariable: 'ansibleDemoPassword', usernameVariable: 'ansibleDemoUser')]) {
+					sh "ansible-playbook deploy-test.yml --extra-vars  "ansible_user=${env.ansibleDemoUser} ansible_password=${env.ansibleDemoPassword}""
 					echo "Docker image deployed on Node successfully ....!!!"
 				   }
 				
