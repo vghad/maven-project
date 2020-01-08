@@ -9,10 +9,7 @@ pipeline{
 			
 		stage('Docker Pull'){
 				steps{
-					echo "Switch to user ansible"
-					sh "sudo su ansible"
-					echo "Pull docker image form dockerhub"
-					sh "sudo ansible-playbook deploy-test.yml"
+					sh "ansible-playbook deploy-test.yml --e--extra-vars "ansible_user=root ansible_password=yourpassword""
 					echo "Docker image deployed on Node successfully ....!!!"
 				
 					}
