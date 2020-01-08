@@ -9,7 +9,7 @@ pipeline{
 			
 		stage('Docker Pull'){
 				steps{
-					sh "ansible-playbook deploy-test.yml --extra-vars "{ansible_user=ansible ansible_password=root}""
+					sh "ansible-playbook deploy-test.yml --extra-vars "{ansible_user=ansible} {ansible_password=root}""
 					echo "Docker image deployed on Node successfully ....!!!"
 				
 					}
