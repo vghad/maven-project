@@ -43,7 +43,7 @@
         
     - name: launch msql-server container
       docker_container:
-      name: "mytomcat-container"
+      name: mytomcat-container
       image: "{{ default_container_image }}"
       state: started
       ports:
