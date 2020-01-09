@@ -44,7 +44,7 @@
     - name: run the site in a docker container
       docker:
         name: test-container
-        image: "built-by-ansible"
+        image: "{{ default_container_image }}"
         state: reloaded
         publish_all_ports: yes
         use_tls: encrypt
