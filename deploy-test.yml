@@ -41,12 +41,8 @@
         name: "{{ default_container_image }}"
         source: pull
      
-    - name: build the image
-      docker_image: >
-       name= built-by-ansible
-       tag=ex1
-       path= /var/lib/jenkins/workspace/Demo_pipeline/
-       state=present
+    - name: build the Docker image
+      command: "docker build -t built-by-ansible -f ./var/lib/jenkins/workspace/Demo_pipeline/Dockerfile.txt ."
 
         
     - name: run the site in a docker container
