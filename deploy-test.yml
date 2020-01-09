@@ -41,11 +41,10 @@
         name: "{{ default_container_image }}"
         source: pull
         
-    - name: run the site in a docker container
-      docker:
-        name: test-container
-        image: "{{ default_container_image }}"
-        state: reloaded
-        publish_all_ports: yes
-        use_tls: encrypt
-  
+    - name: launch msql-server container
+      docker_container:
+      name: "mytomcat-container"
+      image: "{{ default_container_image }}"
+      state: started
+      ports:
+      - "8080:8080"
