@@ -42,7 +42,7 @@
         source: pull
      
     - name: build the Docker image
-      command: "docker build -t built-by-ansible -f ./Dockerfile.txt ."
+      command: "docker build -t built-by-ansible -f /var/lib/jenkins/workspace/Demo_pipeline/Dockerfile.txt ."
 
         
     - name: run the site in a docker container
