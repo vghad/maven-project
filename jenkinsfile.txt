@@ -6,15 +6,37 @@ pipeline{
 	}
 
       stages{
-			
-		stage('Docker Pull'){
+	  
+		stage('Build'){
 				steps{
-				
+					sh 'mvn clean package'				
+						 }
+			}
+		stage('Docker build'){
+				steps{
+					sh "docker build -t frenley/development_env:tomcatwebapp-${env.BUILD_ID} -f ./Dockerfile.txt ."
+					echo 'Application Docker image built Successfully!'					
+				}		
+			}		
+		stage('Docker Push'){
+			    steps{
+					echo "Login on Dockerhub account"
+					withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
+					sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
+					 echo "Docker image push on a docker hub...."
+                    sh "docker push frenley/development_env:tomcatwebapp-${env.BUILD_ID}" 
+					echo "Docker image successfully push on docker hub.....!!!"			
+					}		
+				}
+			}
+			
+		stage('Docker Pull on node'){
+				steps{
 					withCredentials([usernamePassword(credentialsId: 'ansibleDemo', passwordVariable: 'ansibleDemoPassword', usernameVariable: 'ansibleDemoUser')]) {
 					sh "ansible-playbook deploy-test.yml --extra-vars 'ansible_user=${env.ansibleDemoUser} ansible_password=${env.ansibleDemoPassword} ' "
 					echo "Docker image deployed on Node successfully ....!!!"
 				   }
-				
+				   
 				}
 			}
 	}
