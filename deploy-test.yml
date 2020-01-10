@@ -6,7 +6,7 @@
   become: true
   
   vars:
-          default_container_image: frenley/development_env:tomcatwebapp-${env.BUID_ID}
+          default_container_image: frenley/development_env:tomcatwebapp-108
 
   tasks:
        
