@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Login Page of Qualsquad .....</title>
+<title>Login Page</title>
 <style>
 /* Basics */
 html, body {
@@ -139,6 +139,7 @@ input[type=submit]:active {
 <body>
 
     <!-- Begin Page Content -->
+<h1> Login Page Demo...</h1>
     <div id="container">
         <form action="login_process.php" method="post">
             <label for="loginmsg" style="color:hsla(0,100%,50%,0.5); font-family:"Helvetica Neue",Helvetica,sans-serif;"><?php  echo @$_GET['msg'];?></label>
