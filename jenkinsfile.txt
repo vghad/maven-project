@@ -24,7 +24,7 @@ pipeline{
 					withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
 					sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
 					 echo "Docker image push on a docker hub...."
-                    sh "docker push frenley/development_env:tomcatwebapp-${env.BUILD_ID}" 
+                    sh "docker push frenley/development_env:tomcatwebapp" 
 					echo "Docker image successfully push on docker hub.....!!!"			
 					}		
 				}
