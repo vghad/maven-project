@@ -8,7 +8,7 @@
   vars:
   
      BUILD_ID: "{{ BUILD_ID }}"
-     default_container_image: frenley/development_env:tomcatwebapp-{{ BUILD_ID }}
+     default_container_image: frenley/development_env:tomcatwebapp-"{{ BUILD_ID }"}
 
   tasks:
        
