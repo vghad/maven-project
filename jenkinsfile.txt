@@ -20,7 +20,7 @@ pipeline{
 			}		
 		stage('Docker Push'){
 			    steps{
-					echo "Login on Dockerhub account"
+						echo "Login on Dockerhub account"
 					withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
 					sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
 					 echo "Docker image push on a docker hub...."
@@ -33,7 +33,7 @@ pipeline{
 		stage('Docker Pull on node'){
 				steps{
 					withCredentials([usernamePassword(credentialsId: 'ansibleDemo', passwordVariable: 'ansibleDemoPassword', usernameVariable: 'ansibleDemoUser')]) {
-					sh "ansible-playbook deploy-test.yml --extra-vars 'ansible_user=${env.ansibleDemoUser} ansible_password=${env.ansibleDemoPassword} BUILD_ID:${env.BUILD_ID}'"
+					sh "ansible-playbook deploy-test.yml --extra-vars 'ansible_user=${env.ansibleDemoUser} ansible_password=${env.ansibleDemoPassword} BUILD_ID=${env.BUILD_ID}'"
 					echo "Docker image deployed on Node successfully ....!!!"
 				   }
 				   
